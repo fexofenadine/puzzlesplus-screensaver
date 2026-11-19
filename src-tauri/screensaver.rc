@@ -1,0 +1,5 @@
+//windows lists a screensaver by the string with id 1, whatever its file is called
+STRINGTABLE
+BEGIN
+  1 "Puzzles Plus"
+END

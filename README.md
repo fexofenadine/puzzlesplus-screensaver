@@ -4,11 +4,11 @@
 
 The animated themes of [Puzzles Plus](https://github.com/fexofenadine/puzzlesplus) as a Windows screensaver: the xscreensaver ports and shaders behind its nine themes, fullscreen, with every effect the website has, from Synthwave's VHS tears and bursts of static to Vaporwave's worn tape and Matrix's CRT and garbled columns.
 
-**[Download the latest release](https://github.com/fexofenadine/puzzlesplus-screensaver/releases/latest)** (`Puzzles Plus.scr`)
+**[Download the latest release](https://github.com/fexofenadine/puzzlesplus-screensaver/releases/latest)** (`PuzzlesPlus.scr`)
 
 ## Installing
 
-1. Download `Puzzles Plus.scr`.
+1. Download `PuzzlesPlus.scr`.
 2. Right-click it and choose **Install**, or copy it to `C:\Windows\System32` and pick **Puzzles Plus** in Windows' Screen Saver Settings.
 3. Windows may warn that the file is from an unknown publisher the first time, since it is not signed.
 
@@ -35,7 +35,7 @@ It needs Node, Rust (`rustup`, the MSVC toolchain) and Visual Studio's C++ build
 ```sh
 npx yarn@1 install           #dependencies
 npx vite --mode screensaver  #the pages in a browser, at /screensaver/ and /screensaver/settings.html
-npm run build:screensaver    #release/Puzzles Plus.scr
+npm run build:screensaver    #release/PuzzlesPlus.scr
 ```
 
 Fixes to the backgrounds and effects are made in [fexofenadine/puzzlesplus](https://github.com/fexofenadine/puzzlesplus) and merged in from there (`git merge upstream/master`).

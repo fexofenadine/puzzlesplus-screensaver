@@ -1,11 +1,12 @@
 [package]
 name = "puzzlesplus-screensaver"
-version = "1.0.0"
+version = "1.0.1"
 description = "Puzzles Plus's animated themes as a Windows screensaver"
 edition = "2021"
 
 [build-dependencies]
 tauri-build = { version = "2", features = [] }
+embed-resource = "3"
 
 [dependencies]
 #custom-protocol serves the built pages from inside the program, never from a dev server
