@@ -6,6 +6,16 @@ The animated themes of [Puzzles Plus](https://github.com/fexofenadine/puzzlesplu
 
 **[Download the latest release](https://github.com/fexofenadine/puzzlesplus-screensaver/releases/latest)** (`PuzzlesPlus.scr`)
 
+| Synthwave: Neon Triangulator under VHS scanlines          | Vaporwave: Qix over a worn tape                    |
+| --------------------------------------------------------- | -------------------------------------------------- |
+| ![Synthwave](docs/screensaver/synthwave.jpg)              | ![Vaporwave](docs/screensaver/vaporwave.jpg)       |
+| **Matrix: code rain behind a CRT, its band rolling down** | **Terafox Hex Trail**                              |
+| ![Matrix](docs/screensaver/matrix.jpg)                    | ![Terafox Hex Trail](docs/screensaver/terafox.jpg) |
+
+**The settings, over the screensaver itself: theme or a random one, the background's options and every glitch**
+
+<img src="docs/screensaver/settings.jpg" alt="The screensaver's settings" width="450">
+
 ## Installing
 
 1. Download `PuzzlesPlus.scr`.
@@ -36,6 +46,7 @@ It needs Node, Rust (`rustup`, the MSVC toolchain) and Visual Studio's C++ build
 npx yarn@1 install           #dependencies
 npx vite --mode screensaver  #the pages in a browser, at /screensaver/ and /screensaver/settings.html
 npm run build:screensaver    #release/PuzzlesPlus.scr
+py -3 -I scripts/shots.py    #the pictures above, with the vite server running on port 5175
 ```
 
 Fixes to the backgrounds and effects are made in [fexofenadine/puzzlesplus](https://github.com/fexofenadine/puzzlesplus) and merged in from there (`git merge upstream/master`).
