@@ -4,6 +4,7 @@ import '../app.css'
 import b from '../shell/BackgroundSettings.module.css'
 import s from './Settings.module.css'
 import Dialog from '../Dialog'
+import d from '../Dialog.module.css'
 import Button from '../Button'
 import { Control } from '../shell/BackgroundSettings'
 import {
@@ -221,14 +222,28 @@ const GlitchPart = ({ state, actions }) => {
   ]
 }
 
+//on a phone the dialog grows to the screen's width, up to half as big again, so it can be read
+const grow = (room) => {
+  if (!android()) return
+  requestAnimationFrame(() => {
+    const dialog = room.querySelector(`.${d.dialog}`)
+    if (!dialog?.offsetWidth) return
+    const scale = Math.min(1.5, Math.floor(((innerWidth - 24) / dialog.offsetWidth) * 100) / 100)
+    if (scale > 1) dialog.style.setProperty('--scale', scale)
+  })
+}
+
 const view = (state, actions) => (
   <main
     onkeydown={(event) => event.key === 'Escape' && close()}
     oncreate={() => startBackgrounds()}
   >
     <div id="looks" />
-    <div class={s.room}>
-      <Dialog title="Puzzles Plus Screensaver" onClose={close}>
+    <div class={s.room} oncreate={grow}>
+      <Dialog
+        title={android() ? 'Puzzles Plus Wallpaper' : 'Puzzles Plus Screensaver'}
+        onClose={close}
+      >
         <form class={`${b.root} ${s.form}`} autocomplete="off" onsubmit={(e) => e.preventDefault()}>
           <ThemePart state={state} actions={actions} />
           <BackgroundPart state={state} actions={actions} />
@@ -236,7 +251,7 @@ const view = (state, actions) => (
           <div class={b.footer}>
             {android() && (
               <Button type="button" onClick={() => android().apply()}>
-                <span class={b.button}>Set Wallpaper</span>
+                <span class={b.button}>Apply</span>
               </Button>
             )}
             {tauri() && (
