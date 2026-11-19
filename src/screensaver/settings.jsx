@@ -20,14 +20,21 @@ import { defaultEffects, effects, effectsOf, loadEffects, saveEffects } from '..
 import { loadMotion, motions, saveMotion } from '../shell/motion'
 import { themes } from '../shell/themes'
 import { load, save } from '../shell/storage'
-import { MINUTES, loadOptions, saveOptions } from './options'
+import { MINUTES, loadOptions, rates, saveOptions } from './options'
 
-//the screensaver's settings (/c): its theme and timing, the theme's background and every glitch
+//the screensaver's settings (/c), also the android live wallpaper's: its theme and timing, the
+//theme's background and every glitch, and the wallpaper's frame rate and drift
 //each change shows at once on the background behind and is saved straight away
 
 const tauri = () => window.__TAURI__?.core
+//the android app's wallpaper settings screen gives the page close() and apply()
+const android = () => window.PuzzlesWallpaper
 
-const close = () => (tauri() ? tauri().invoke('quit') : window.close())
+const close = () => {
+  if (android()) android().close()
+  else if (tauri()) tauri().invoke('quit')
+  else window.close()
+}
 
 const themeName = (id) => themes.find(([theme]) => theme === id)?.[1] || id
 
@@ -45,23 +52,18 @@ const actions = {
     document.documentElement.dataset.theme = theme
     return { theme }
   },
-  setRandom:
-    (random) =>
-    ({ minutes }) => {
-      saveOptions({ random, minutes })
-      return { random }
-    },
-  setMinutes:
-    (minutes) =>
-    ({ random }) => {
-      saveOptions({ random, minutes })
-      return { minutes }
+  //random, minutes, fps or drift
+  setOption:
+    (change) =>
+    ({ random, minutes, fps, drift }) => {
+      saveOptions({ random, minutes, fps, drift, ...change })
+      return change
     },
   setMotion: (motion) => {
     saveMotion(motion)
     return { motion }
   },
-  setOption:
+  setBackground:
     ([id, key, value]) =>
     ({ backgrounds: all }) => {
       const next = { ...all, [id]: { ...all[id], [key]: value } }
@@ -131,16 +133,34 @@ const ThemePart = ({ state, actions }) => [
     <Choice value={state.theme} choices={themes} onChange={actions.setTheme} />
   </Row>,
   <Row name="Change theme at random:">
-    <Check checked={state.random} onChange={actions.setRandom} />
+    <Check checked={state.random} onChange={(random) => actions.setOption({ random })} />
   </Row>,
   state.random && (
     <Row name="Every:">
-      <Control option={minutesOption} value={state.minutes} onChange={actions.setMinutes} />
+      <Control
+        option={minutesOption}
+        value={state.minutes}
+        onChange={(minutes) => actions.setOption({ minutes })}
+      />
     </Row>
   ),
   <Row name="Motion:">
     <Choice value={state.motion} choices={motions} onChange={actions.setMotion} />
   </Row>,
+  android() && (
+    <Row name="Frame rate:">
+      <Choice
+        value={String(state.fps)}
+        choices={rates.map(([fps, name]) => [String(fps), name])}
+        onChange={(fps) => actions.setOption({ fps: Number(fps) })}
+      />
+    </Row>
+  ),
+  android() && (
+    <Row name="Drift with the home screens:">
+      <Check checked={state.drift} onChange={(drift) => actions.setOption({ drift })} />
+    </Row>
+  ),
 ]
 
 //the shown theme's background, every one of its options
@@ -154,7 +174,7 @@ const BackgroundPart = ({ state, actions }) => {
         <Control
           option={option}
           value={state.backgrounds[id][option.key]}
-          onChange={(value) => actions.setOption([id, option.key, value])}
+          onChange={(value) => actions.setBackground([id, option.key, value])}
         />
       </Row>
     )),
@@ -214,9 +234,16 @@ const view = (state, actions) => (
           <BackgroundPart state={state} actions={actions} />
           <GlitchPart state={state} actions={actions} />
           <div class={b.footer}>
-            <Button type="button" onClick={() => tauri()?.invoke('preview')}>
-              <span class={b.button}>Preview</span>
-            </Button>
+            {android() && (
+              <Button type="button" onClick={() => android().apply()}>
+                <span class={b.button}>Set Wallpaper</span>
+              </Button>
+            )}
+            {tauri() && (
+              <Button type="button" onClick={() => tauri().invoke('preview')}>
+                <span class={b.button}>Preview</span>
+              </Button>
+            )}
             <Button type="button" onClick={close}>
               <span class={b.button}>Close</span>
             </Button>

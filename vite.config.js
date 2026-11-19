@@ -43,7 +43,8 @@ const assetList = () => ({
   },
 })
 
-//the website's pages, or only the screensaver's for the windows app (vite --mode screensaver)
+//the website's pages, only the screensaver's for the windows app (vite --mode screensaver), or
+//both for the android app, whose live wallpaper is the screensaver's page
 const pages = {
   index: 'index.html',
   minesweeper: 'minesweeper/index.html',
@@ -89,7 +90,12 @@ export default defineConfig(({ mode }) => ({
     modulePreload: { polyfill: false },
     rolldownOptions: {
       //the root page only redirects, each game and guide is its own page
-      input: mode === 'screensaver' ? screensaverPages : pages,
+      input:
+        mode === 'screensaver'
+          ? screensaverPages
+          : mode === 'android'
+            ? { ...pages, ...screensaverPages }
+            : pages,
       output: {
         entryFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name][extname]',
