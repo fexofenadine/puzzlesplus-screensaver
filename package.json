@@ -35,6 +35,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "predeploy": "vite build",
-    "deploy": "gh-pages --dist build"
+    "deploy": "gh-pages --dist build",
+    "build:screensaver": "vite build --mode screensaver && cargo build --release --manifest-path src-tauri/Cargo.toml && node scripts/scr.mjs"
   }
 }

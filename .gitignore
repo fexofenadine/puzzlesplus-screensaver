@@ -12,3 +12,9 @@ coverage/
 .DS_Store
 Thumbs.db
 *.code-workspace
+
+#the screensaver build and the windows app
+dist-screensaver/
+src-tauri/target/
+src-tauri/gen/
+release/

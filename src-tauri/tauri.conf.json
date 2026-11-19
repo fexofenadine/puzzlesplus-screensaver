@@ -1,0 +1,19 @@
+{
+  "productName": "Puzzles Plus Screensaver",
+  "version": "1.0.0",
+  "identifier": "io.github.fexofenadine.puzzlesplus.screensaver",
+  "build": {
+    "frontendDist": "../dist-screensaver"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "windows": [],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": false,
+    "icon": ["icons/icon.ico"]
+  }
+}

@@ -2,7 +2,7 @@ import js from '@eslint/js'
 import globals from 'globals'
 
 export default [
-  { ignores: ['build/', 'coverage/', 'public/'] },
+  { ignores: ['build/', 'coverage/', 'public/', 'dist-screensaver/', 'release/', 'src-tauri/'] },
   js.configs.recommended,
   {
     files: ['**/*.{js,jsx}'],
