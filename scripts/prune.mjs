@@ -77,4 +77,5 @@ const names = remove.map((path) =>
 for (let i = 0; i < names.length; i += 50) {
   execFileSync('git', ['rm', '-q', '-r', '-f', '--ignore-unmatch', ...names.slice(i, i + 50)])
 }
-console.log(`removed ${names.length} paths`)
+process.stdout.write(`removed ${names.length} paths
+`)

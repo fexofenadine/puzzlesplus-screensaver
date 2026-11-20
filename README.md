@@ -54,3 +54,7 @@ Fixes to the backgrounds and effects are made in [fexofenadine/puzzlesplus](http
 ## Credits
 
 The backgrounds, themes and their credits are those of [Puzzles Plus](https://github.com/fexofenadine/puzzlesplus#credits): ports of xscreensaver hacks by Jamie Zawinski, J. Tarbell, Mike Kershaw, Adrian Likins and Frederick Roeber, shaders by mrange and drift, and photos from Unsplash. Released under the MIT licence.
+
+## Merging the website
+
+This repo is a trimmed copy of the website: only what the screensaver uses is kept. After `git merge upstream/master`, run `node scripts/prune.mjs` to remove again anything the merge brought back (new games, pages and so on), then commit.
