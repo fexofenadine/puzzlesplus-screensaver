@@ -21,7 +21,7 @@ const versionAssets = () => ({
   },
 })
 
-//both games share one pre-paint script, inlined so it runs before the page draws
+//the pages share one pre-paint script, inlined so it runs before the page draws
 const prepaint = () => ({
   name: 'prepaint',
   transformIndexHtml: {
@@ -34,43 +34,14 @@ const prepaint = () => ({
   },
 })
 
-//assets.json lists every built file under assets/, for the page to keep offline (shell/offline.js)
-const assetList = () => ({
-  name: 'asset-list',
-  generateBundle(options, bundle) {
-    const files = Object.keys(bundle).filter((file) => file.startsWith('assets/'))
-    this.emitFile({ type: 'asset', fileName: 'assets.json', source: JSON.stringify(files) })
-  },
-})
-
-//the website's pages, only the screensaver's for the windows app (vite --mode screensaver), or
-//both for the android app, whose live wallpaper is the screensaver's page
+//the screensaver's two pages: the show itself and its settings
 const pages = {
-  index: 'index.html',
-  minesweeper: 'minesweeper/index.html',
-  takuzu: 'takuzu/index.html',
-  nonograms: 'nonograms/index.html',
-  sudoku: 'sudoku/index.html',
-  2048: '2048/index.html',
-  lightup: 'lightup/index.html',
-  futoshiki: 'futoshiki/index.html',
-  'minesweeper-guide': 'minesweeper/guide/index.html',
-  'takuzu-guide': 'takuzu/guide/index.html',
-  'nonograms-guide': 'nonograms/guide/index.html',
-  'sudoku-guide': 'sudoku/guide/index.html',
-  '2048-guide': '2048/guide/index.html',
-  'lightup-guide': 'lightup/guide/index.html',
-  'futoshiki-guide': 'futoshiki/guide/index.html',
-  'how-to-play': 'how-to-play/index.html',
-}
-
-const screensaverPages = {
   show: 'screensaver/index.html',
   settings: 'screensaver/settings.html',
 }
 
-//the website stays readable, the android app and the screensaver are minified
-export default defineConfig(({ mode }) => ({
+//the screensaver is minified
+export default defineConfig({
   base: './',
   oxc: {
     jsx: { runtime: 'classic', pragma: 'h' },
@@ -81,29 +52,22 @@ export default defineConfig(({ mode }) => ({
       generateScopedName: (name, file) => `${basename(file).split('.')[0]}_${name}`,
     },
   },
-  //the games' icons and pages stay out of the screensaver
-  publicDir: mode === 'screensaver' ? false : 'public',
+  publicDir: false,
   build: {
-    outDir: mode === 'screensaver' ? 'dist-screensaver' : 'build',
-    minify: mode === 'android' || mode === 'screensaver',
-    cssMinify: mode === 'android' || mode === 'screensaver',
+    outDir: 'dist-screensaver',
+    minify: true,
+    cssMinify: true,
     modulePreload: { polyfill: false },
     rolldownOptions: {
-      //the root page only redirects, each game and guide is its own page
-      input:
-        mode === 'screensaver'
-          ? screensaverPages
-          : mode === 'android'
-            ? { ...pages, ...screensaverPages }
-            : pages,
+      input: pages,
       output: {
         entryFileNames: 'assets/[name].js',
         assetFileNames: 'assets/[name][extname]',
       },
     },
   },
-  plugins: [prepaint(), versionAssets(), assetList()],
+  plugins: [prepaint(), versionAssets()],
   test: {
     environment: 'jsdom',
   },
-}))
+})

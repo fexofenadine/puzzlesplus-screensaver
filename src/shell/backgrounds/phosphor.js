@@ -12,7 +12,7 @@
  * Written by Jamie Zawinski <jwz@jwz.org>
  */
 
-//canvas port of phosphor.c, typing this game's own source
+//canvas port of phosphor.c, typing the program's own source
 
 import { FONT_HEIGHT, FONT_WIDTH, pixel } from './font6x10'
 import { phosphor as meta } from './meta'

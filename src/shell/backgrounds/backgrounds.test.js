@@ -208,9 +208,9 @@ it('has the 6x10 font glyphs', () => {
   expect(rows(' ').join('')).not.toContain('#')
 })
 
-it('types the game source into phosphor and fades it', async () => {
+it('types its own source into phosphor and fades it', async () => {
   const files = await loadTexts()
-  expect(files.some(({ name }) => name === 'src/mines.js')).toBe(true)
+  expect(files.some(({ name }) => name === 'src/screensaver/show.js')).toBe(true)
   expect(files.some(({ name }) => name.includes('.test.'))).toBe(false)
   const context = counter()
   const instance = phosphor.create(context, { ...defaults('phosphor'), delay: 10 })

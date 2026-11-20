@@ -38,13 +38,13 @@ A key, a click, a turned wheel or a mouse moved more than a nudge ends it. It sh
 
 ## Building
 
-The screensaver is the website's code built in its own mode (`vite --mode screensaver`, pages in `screensaver/` and `src/screensaver/`) inside a small [Tauri](https://tauri.app) program (`src-tauri/`) that answers Windows' screensaver switches: `/s` fullscreen, `/c` settings and `/p` the preview drawn in the settings' little monitor.
+The screensaver is the backgrounds, screen effects and settings window of the [website](https://github.com/fexofenadine/puzzlesplus) built with Vite (pages in `screensaver/` and `src/screensaver/`; the games, guides, taskbar and the rest of the website are not part of this repo, so it stays small) inside a small [Tauri](https://tauri.app) program (`src-tauri/`) that answers Windows' screensaver switches: `/s` fullscreen, `/c` settings and `/p` the preview drawn in the settings' little monitor.
 
 It needs Node, Rust (`rustup`, the MSVC toolchain) and Visual Studio's C++ build tools.
 
 ```sh
 npx yarn@1 install           #dependencies
-npx vite --mode screensaver  #the pages in a browser, at /screensaver/ and /screensaver/settings.html
+npx vite                     #the pages in a browser, at /screensaver/ and /screensaver/settings.html
 npm run build:screensaver    #release/PuzzlesPlus.scr
 py -3 -I scripts/shots.py    #the pictures above, with the vite server running on port 5175
 ```
