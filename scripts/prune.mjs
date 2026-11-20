@@ -1,6 +1,8 @@
 //after merging upstream (the website), removes again whatever the screensaver does not use:
 //node scripts/prune.mjs, then commit; it starts from the screensaver's pages and its tests
 import { execFileSync } from 'node:child_process'
+import { EOL } from 'node:os'
+import { stdout } from 'node:process'
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs'
 import { dirname, join, normalize, resolve, sep } from 'node:path'
 
@@ -77,5 +79,4 @@ const names = remove.map((path) =>
 for (let i = 0; i < names.length; i += 50) {
   execFileSync('git', ['rm', '-q', '-r', '-f', '--ignore-unmatch', ...names.slice(i, i + 50)])
 }
-process.stdout.write(`removed ${names.length} paths
-`)
+stdout.write(`removed ${names.length} paths${EOL}`)
