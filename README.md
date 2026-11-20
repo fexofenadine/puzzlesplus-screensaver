@@ -2,7 +2,7 @@
 
 # Puzzles Plus Screensaver
 
-A Windows screensaver (`.scr`) made of the animated themes of [Puzzles Plus](https://github.com/fexofenadine/puzzlesplus), a set of Windows 95 style puzzle games for the web and Android. It runs the backgrounds behind the themes fullscreen, xscreensaver ports and shaders with every effect the website has, opening on Synthwave's neon shader with its VHS tears and bursts of static, then Vaporwave's worn tape, Matrix's CRT and garbled columns and the rest of its nine themes. There are no games in the screensaver itself; the Android app has the same backgrounds as a live wallpaper.
+A Windows screensaver (`.scr`) made of the animated themes of [Puzzles Plus](https://github.com/fexofenadine/puzzlesplus), a set of Windows 95 style puzzle games for the web and Android. It runs the backgrounds behind the themes fullscreen, xscreensaver ports and shaders with every effect the website has, opening on Synthwave's neon shader with its VHS tears and bursts of static, then Vaporwave's worn tape, Matrix's CRT and garbled columns and the rest of its eight themes. There are no games in the screensaver itself; the Android app has the same backgrounds as a live wallpaper.
 
 **[Download the latest release](https://github.com/fexofenadine/puzzlesplus-screensaver/releases/latest)** (`PuzzlesPlus.scr`)
 
@@ -28,7 +28,7 @@ It needs Windows 10 or 11 with the WebView2 runtime, which both ship with.
 
 **Settings...** in Windows' Screen Saver Settings opens a window over the screensaver itself, so each change shows as you make it:
 
-- **Theme**: Synthwave (the first one shown), Classic, Matrix, Nord, Solarized Truchet, Solarized Phosphor, Vaporwave, Terafox Hex Trail or Terafox Coral, or **Change theme at random** every so many minutes (5 by default).
+- **Theme**: Synthwave (the first one shown), Classic, Matrix, Nord, Solarized Truchet, Solarized Phosphor, Vaporwave or Terafox Hex Trail, or **Change theme at random** every so many minutes (5 by default).
 - **Motion**: full, reduced (the glitches and rolling bands stop) or as the system says.
 - The theme's background, with every option of its xscreensaver original (speed, density, colours, resolution and the rest), and **Defaults**.
 - **Glitches**: each screen effect on or off, the ones that come now and then and the scanlines, band, grain and flicker that stay.
