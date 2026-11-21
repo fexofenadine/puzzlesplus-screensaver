@@ -1,4 +1,5 @@
 #retakes the readme's pictures (docs/screensaver) from `npx vite --mode screensaver --port 5175`
+#waits follow the project's rule: synthwave and matrix a minute, terafox 22 seconds (a lot of hexagons are on screen)
 #in playwright's firefox with webgl2 switched on; py -3 -I scripts/shots.py from the repo's root
 #the settings stand in for the program's bridge (__TAURI__) so they show its preview button
 import json, os, subprocess
@@ -30,10 +31,10 @@ neon = json.dumps({'version': 2, 'neon': {'resolution': 100}})
 os.makedirs(OUT, exist_ok=True)
 with sync_playwright() as p:
     b = p.firefox.launch(firefox_user_prefs={'webgl.force-enabled': True, 'webgl.enable-webgl2': True})
-    take(b, 'synthwave', 'index.html', {'theme': 'synthwave', 'backgrounds': neon})
+    take(b, 'synthwave', 'index.html', {'theme': 'synthwave', 'backgrounds': neon}, wait=60000)
     take(b, 'vaporwave', 'index.html', {'theme': 'vaporwave'})
-    take(b, 'matrix', 'index.html', {'theme': 'matrix'})
-    take(b, 'terafox', 'index.html', {'theme': 'terafox'}, wait=25000)
+    take(b, 'matrix', 'index.html', {'theme': 'matrix'}, wait=60000)
+    take(b, 'terafox', 'index.html', {'theme': 'terafox'}, wait=22000)
     take(b, 'settings', 'settings.html', {'theme': 'vaporwave', 'screensaver': json.dumps({'random': True, 'minutes': 5})},
          size=(900, 1000), init='window.__TAURI__ = { core: { invoke: () => {} } }')
     b.close()
