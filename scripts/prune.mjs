@@ -24,6 +24,7 @@ const roots = [
 const websiteOnly = [
   '2048',
   'futoshiki',
+  'bridges',
   'how-to-play',
   'index.html',
   'lightup',
