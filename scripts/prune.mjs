@@ -36,6 +36,8 @@ const websiteOnly = [
   'docs/banner',
   'docs/screenshots',
   'docs/screenshots.py',
+  'docs/ARCHITECTURE.md',
+  'docs/HISTORY.md',
   'docs/puzzlesplus.png',
 ]
 
