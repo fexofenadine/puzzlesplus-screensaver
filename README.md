@@ -30,7 +30,7 @@ It needs Windows 10 or 11 with the WebView2 runtime, which both ship with.
 
 - **Theme**: Synthwave (the first one shown), Classic, Matrix, Nord, Solarized Truchet, Solarized Phosphor, Vaporwave or Terafox Hex Trail, or **Change theme at random** every so many minutes (5 by default).
 - **Motion**: full, reduced (the glitches and rolling bands stop) or as the system says.
-- The theme's background, with every option of its xscreensaver original (speed, density, colours, resolution, and a frame rate for the shaders, and the rest), and **Defaults**.
+- The theme's background, with every option of its xscreensaver original (speed, density, colours, resolution, a frame rate for the shaders and the rest), and **Defaults**.
 - **Glitches**: each screen effect on or off, the ones that come now and then and the scanlines, band, grain and flicker that stay.
 - **Preview** runs the screensaver fullscreen.
 
