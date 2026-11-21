@@ -1,6 +1,6 @@
 {
   "productName": "Puzzles Plus Screensaver",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "identifier": "io.github.fexofenadine.puzzlesplus.screensaver",
   "build": {
     "frontendDist": "../dist-screensaver"

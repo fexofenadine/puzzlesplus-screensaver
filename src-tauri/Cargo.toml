@@ -1,6 +1,6 @@
 [package]
 name = "puzzlesplus-screensaver"
-version = "1.0.1"
+version = "2.0.0"
 description = "Puzzles Plus's animated themes as a Windows screensaver"
 edition = "2021"
 
